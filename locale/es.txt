@@ -1,0 +1,4 @@
+
+Hello %s!::¡Hola %s!
+Blah blah...\nBlah blah...::Bla bla...\nBla bla...
+Bye!::¡Adios!
