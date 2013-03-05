@@ -18,47 +18,15 @@ else
     TRACE = function ( ) end
 end
 
-local repr2esc = {
-    ["n"] = "\n";
-    ["r"] = "";
-    ["t"] = "\t";
-    ["\\"] = "\\";
-    ["\""] = "\"";
-};
-
-local esc2repr = {
-    ["\n"] = "\\n";
-    ["\r"] = "";
-    ["\t"] = "\\t";
-    ["\\"] = "\\\\";
-    ["\\\""] = "\"";
-};
-
-local function parse ( s )
-    return s:gsub("\\([nrt\"\'\\\\])", function ( c )
-        return (repr2esc[c] or c);
-    end);
-end
-
-local function repr ( s )
-    return s:gsub("[\n\t\"\'\\\\]", function ( c )
-        return (esc2repr[c] or c);
-    end);
-end
-
 local function do_load_strings ( f )
     local msgstr = { };
     for line in f:lines() do
         line = line:trim();
         if ((line ~= "") and (line:sub(1, 1) ~= "#")) then
             local pos = line:find("=", 1, true);
-            while (pos and (line:sub(pos - 1, pos - 1) == "\\")) do
-                local pos = line:find("=", pos + 1, true);
-            end
             if (pos) then
                 local msgid = line:sub(1, pos - 1):trim();
-                local str = line:sub(pos + 1):trim();
-                msgstr[msgid] = parse(str);
+                msgstr[msgid] = line:sub(pos + 1):trim();
             end
         end
     end
