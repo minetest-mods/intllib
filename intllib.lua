@@ -71,7 +71,7 @@ function load_strings ( modname, lang )
     if (not f) then
         f, e = io.open(minetest.get_modpath("intllib").."/locale/"..modname.."/"..lang..".txt");
         if (not f) then
-            return nil, "Could not load '"..LANG.."' texts: "..e;
+            return nil;
         end
     end
     local strings;
