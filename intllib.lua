@@ -65,16 +65,19 @@ local function do_load_strings ( f )
     return msgstr;
 end
 
-function intllib.load_strings ( modname )
-    local f, e = io.open(minetest.get_modpath(modname).."/locale/"..LANG..".txt");
-    if (f) then
-        local strings;
-        strings = do_load_strings(f);
-        f:close();
-        return strings;
-    else
-        return nil, "Could not load '"..LANG.."' texts: "..e;
+function load_strings ( modname, lang )
+    lang = lang or LANG;
+    local f, e = io.open(minetest.get_modpath(modname).."/locale/"..lang..".txt");
+    if (not f) then
+        f, e = io.open(minetest.get_modpath("intllib").."/locale/"..modname.."/"..lang..".txt");
+        if (not f) then
+            return nil, "Could not load '"..LANG.."' texts: "..e;
+        end
     end
+    local strings;
+    strings = do_load_strings(f);
+    f:close();
+    return strings;
 end
 
 local getters = { };
@@ -82,10 +85,14 @@ local getters = { };
 function intllib.Getter ( modname )
     if (not modname) then modname = minetest.get_current_modname(); end
     if (not getters[modname]) then 
-        local msgstr = intllib.load_strings(modname) or { };
+        local msgstr = load_strings(modname, lang) or { };
         getters[modname] = function ( s )
             return msgstr[repr(s)] or s;
         end;
     end
     return getters[modname];
+end
+
+function intllib.get_current_language ( )
+    return LANG;
 end
