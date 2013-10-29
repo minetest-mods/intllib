@@ -26,6 +26,7 @@ Available options:
   -a,--author X     Set author.
   -l,--lang X       Set language name.
 ]])
+	os.exit(0)
 end
 
 while i <= #arg do
