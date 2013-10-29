@@ -2,7 +2,6 @@
 local escapes = {
 	["\\"] = "\\",
 	["n"]  = "\n",
-	["="]  = "=",
 }
 
 local function unescape(s)
