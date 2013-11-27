@@ -29,7 +29,10 @@ function intllib.Getter(modname)
 			local msgstr = load_strings(filename)
 			if msgstr then
 				intllib.getters[modname] = function (s)
-					return msgstr[s] or s
+					if msgstr[s] and msgstr[s] ~= "" then
+						return msgstr[s]
+					end
+					return s
 				end
 			else
 				intllib.getters[modname] = noop_getter
