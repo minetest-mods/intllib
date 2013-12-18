@@ -102,11 +102,11 @@ local function printf(fmt, ...)
 	io.stdout:write(fmt:format(...))
 end
 
-local template_msgs = load_strings(template)
+local template_msgs = intllib.load_strings(template)
 
 for _, file in ipairs(catalogs) do
 	print("Processing: "..file)
-	local catalog_msgs = load_strings(file)
+	local catalog_msgs = intllib.load_strings(file)
 	local dirty_lines = { }
 	if catalog_msgs then
 		-- Add new entries from template.

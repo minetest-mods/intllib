@@ -1,4 +1,6 @@
 
+intllib = intllib or {}
+
 local escapes = {
 	["\\"] = "\\",
 	["n"]  = "\n",
@@ -22,7 +24,7 @@ local function find_eq(s)
 	end
 end
 
-function load_strings(filename)
+function intllib.load_strings(filename)
 	local file, err = io.open(filename, "r")
 	if not file then
 		return nil

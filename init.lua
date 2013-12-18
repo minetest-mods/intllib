@@ -26,7 +26,7 @@ function intllib.Getter(modname)
 		local modpath = minetest.get_modpath(modname)
 		if modpath then
 			local filename = modpath.."/locale/"..LANG..".txt"
-			local msgstr = load_strings(filename)
+			local msgstr = intllib.load_strings(filename)
 			if msgstr then
 				intllib.getters[modname] = function (s)
 					if msgstr[s] and msgstr[s] ~= "" then
