@@ -16,6 +16,8 @@ LANG = LANG:sub(1, 2)
 -- Support the old multi-load method
 intllib.getters = intllib.getters or {}
 
+intllib.strings = {}
+
 local function noop_getter(s)
 	return s
 end
@@ -27,6 +29,7 @@ function intllib.Getter(modname)
 		if modpath then
 			local filename = modpath.."/locale/"..LANG..".txt"
 			local msgstr = intllib.load_strings(filename)
+			intllib.strings[modname] = msgstr or false
 			if msgstr then
 				intllib.getters[modname] = function (s)
 					if msgstr[s] and msgstr[s] ~= "" then
@@ -40,5 +43,16 @@ function intllib.Getter(modname)
 		end
 	end
 	return intllib.getters[modname]
+end
+
+function intllib.get_strings(modname)
+	modname = modname or minetest.get_current_modname()
+	local msgstr = intllib.strings[modname]
+	if msgstr == nil then
+		local modpath = minetest.get_modpath(modname)
+		msgstr = intllib.load_strings(modpath.."/locale/"..LANG..".txt")
+		intllib.strings[modname] = msgstr
+	end
+	return msgstr or nil
 end
 
