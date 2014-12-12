@@ -10,13 +10,13 @@ How do I use it?
 In order to enable it for your mod, copy the following code snippet and paste
 it at the beginning of your source file(s):
 
-  -- Boilerplate to support localized strings if intllib mod is installed.
-  local S
-  if intllib then
-    S = intllib.Getter()
-  else
-    S = function(s) return s end
-  end
+	-- Boilerplate to support localized strings if intllib mod is installed.
+	local S
+	if minetest.get_modpath("intllib") then
+		S = intllib.Getter()
+	else
+		S = function(s) return s end
+	end
 
 You will also need to optionally depend on intllib, to do so add "intllib?" to
 a empty line in your depends.txt. Also note that if intllib is not installed,
@@ -27,21 +27,21 @@ if the lib is actually installed.
 Next, for each "translatable" string in your sources, use the S() function
 (defined in the snippet) to return the translated string. For example:
 
-  minetest.register_node("mymod:mynode", {
-    description = S("My Fabulous Node"),
-    <...>
-  })
+	minetest.register_node("mymod:mynode", {
+		description = S("My Fabulous Node"),
+		<...>
+	})
 
 Then, you create a `locale' directory inside your mod directory, with files
 named after the two-letter ISO Language Code of the languages you want to
 support. Here's an example for a Spanish locale file (`es.txt'):
 
-  # Lines beginning with a pound sign are comments and are effectively ignored
-  # by the reader. Note that comments only span until the end of the line;
-  # there's no support for multiline comments.
-  Hello, World! = Hola, Mundo!
-  String with\nnewlines = Cadena con\nsaltos de linea
-  String with an \= equals sign = Cadena con un signo de \= igualdad
+	# Lines beginning with a pound sign are comments and are effectively ignored
+	# by the reader. Note that comments only span until the end of the line;
+	# there's no support for multiline comments.
+	Hello, World! = Hola, Mundo!
+	String with\nnewlines = Cadena con\nsaltos de linea
+	String with an \= equals sign = Cadena con un signo de \= igualdad
 
 Since there's currently no portable way to detect the language, this library
 tries several alternatives, and uses the first one found:
@@ -61,7 +61,7 @@ the following:
   - Click OK until all dialogs are closed.
 Alternatively for all platforms, if you don't want to modify system settings,
 you may add the following line to your `minetest.conf' file:
-  language = <language code>
+	language = <language code>
 
 Also note that there are some problems with using accented, and in general
 non-latin characters in strings. Until a fix is found, please limit yourself
