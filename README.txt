@@ -15,7 +15,14 @@ it at the beginning of your source file(s):
 	if minetest.get_modpath("intllib") then
 		S = intllib.Getter()
 	else
+		-- If you don't use insertions (@1, @2, etc) you can use this:
 		S = function(s) return s end
+
+		-- If you use insertions, but not insertion escapes this will work:
+		S = function(s,a,...)a={a,...}return s:gsub("@(%d+)",function(n)return a[tonumber(n)]end)end
+
+		-- Use this if you require full functionality
+		S = function(s,a,...)if a==nil then return s end a={a,...}return s:gsub("(@?)@(%(?)(%d+)(%)?)",function(e,o,n,c)if e==""then return a[tonumber(n)]..(o==""and c or"")else return"@"..o..n..c end end) end
 	end
 
 You will also need to optionally depend on intllib, to do so add "intllib?" to

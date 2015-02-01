@@ -1,19 +1,37 @@
 
 intllib = intllib or {}
 
+local INS_CHAR = "@"
+intllib.INSERTION_CHAR = INS_CHAR
+
 local escapes = {
 	["\\"] = "\\",
 	["n"]  = "\n",
+	[INS_CHAR]  = INS_CHAR..INS_CHAR,
 }
 
-local function unescape(s)
-	return s:gsub("([\\]?)\\(.)", function(slash, what)
-		if slash and (slash ~= "") then
-			return "\\"..what
+local function unescape(str)
+	local parts = {}
+	local n = 1
+	local function add(s)
+		parts[n] = s
+		n = n + 1
+	end
+
+	local start = 1
+	while true do
+		local pos = str:find("\\", start, true)
+		if pos then
+			add(str:sub(start, pos - 1))
 		else
-			return escapes[what] or what
+			add(str:sub(start))
+			break
 		end
-	end)
+		local c = str:sub(pos + 1, pos + 1)
+		add(escapes[c] or c)
+		start = pos + 2
+	end
+	return table.concat(parts)
 end
 
 local function find_eq(s)

@@ -109,7 +109,7 @@ for _, file in ipairs(inputs) do
 	local infile, e = io.open(file, "r")
 	if infile then
 		for line in infile:lines() do
-			for s in line:gmatch('S%("([^"]*)"%)') do
+			for s in line:gmatch('S%("([^"]*)"') do
 				table.insert(messages, s)
 			end
 		end
