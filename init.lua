@@ -1,5 +1,5 @@
 -- Support the old multi-load method
-intllib = intllib or {}
+intllib = rawget(_G, "intllib") or {}
 
 local MP = minetest.get_modpath("intllib")
 
@@ -23,7 +23,7 @@ local insertion_pattern = "("..INS_CHAR.."?)"..INS_CHAR.."(%(?)(%d+)(%)?)"
 local function make_getter(msgstrs)
 	return function(s, ...)
 		local str
-		if strs then
+		if rawget(_G, "strs") then
 			str = msgstrs[s]
 		end
 		if not str or str == "" then
