@@ -1,5 +1,5 @@
 -- Support the old multi-load method
-intllib = intllib or {}
+intllib = rawget(_G, "intllib") or {}
 
 local MP = minetest.get_modpath("intllib")
 
