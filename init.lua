@@ -1,5 +1,12 @@
--- Support the old multi-load method
-intllib = rawget(_G, "intllib") or {}
+
+-- Old multi-load method compatibility
+if rawget(_G, "intllib") then return end
+
+intllib = {
+	getters = {},
+	strings = {},
+}
+
 
 local MP = minetest.get_modpath("intllib")
 
@@ -10,11 +17,6 @@ local LANG = minetest.setting_get("language")
 if not (LANG and (LANG ~= "")) then LANG = os.getenv("LANG") end
 if not (LANG and (LANG ~= "")) then LANG = "en" end
 LANG = LANG:sub(1, 2)
-
--- Support the old multi-load method
-intllib.getters = intllib.getters or {}
-
-intllib.strings = {}
 
 
 local INS_CHAR = intllib.INSERTION_CHAR
