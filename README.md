@@ -44,9 +44,9 @@ minetest.register_node("mymod:mynode", {
 
 Then, you create a 'locale' directory inside your mod directory, with files
 named after the two-letter ISO Language Code of the languages you want to
-support. Here's an example for a Spanish locale file (`es.txt'):
+support. Here's an example for a Spanish locale file ('es.txt'):
 
-```text
+```cfg
 # Lines beginning with a pound sign are comments and are effectively ignored
 # by the reader. Note that comments only span until the end of the line;
 # there's no support for multiline comments.
@@ -72,7 +72,7 @@ the following:
   - Type "LANG" (without quotes) as name and the language code as value.
   - Click OK until all dialogs are closed.
 Alternatively for all platforms, if you don't want to modify system settings,
-you may add the following line to your `minetest.conf' file:
+you may add the following line to your 'minetest.conf' file:
 	language = <language code>
 
 Also note that there are some problems with using accented, and in general
