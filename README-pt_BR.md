@@ -32,9 +32,9 @@ são todos iguais.
 Alguns códigos comuns são `es` para o espanhol, `pt` para Português, `fr` para o 
 francês, `It` para o italiano, `de` Alemão.
 
-### Para desenvolvedores de mod
+### Para desenvolvedores de mods
 
-Afim de habilitá-lo para o seu mod, copie o seguinte trecho de código e cole no 
+A fim de habilitá-lo para o seu mod, copie o seguinte trecho de código e cole no 
 início de seu(s) arquivo(s) fonte(s):
 
 ```lua
