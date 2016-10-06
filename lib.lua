@@ -7,6 +7,10 @@ intllib.INSERTION_CHAR = INS_CHAR
 local escapes = {
 	["\\"] = "\\",
 	["n"]  = "\n",
+	["s"]  = " ",
+	["t"]  = "\t",
+	["r"]  = "\r",
+	["f"]  = "\f",
 	[INS_CHAR]  = INS_CHAR..INS_CHAR,
 }
 
