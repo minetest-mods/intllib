@@ -249,7 +249,6 @@ local function load_catalog(filename)
 	err = nil
 	local hdrs = data[""]
 	if not (hdrs and hdrs[0]) then
-		print(dump(hdrs))
 		return bail("catalog has no headers")
 	end
 

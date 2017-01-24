@@ -77,8 +77,9 @@ local gettext = dofile(minetest.get_modpath("intllib").."/gettext.lua")
 local function catgettext(catalogs, msgid)
 	for _, cat in ipairs(catalogs) do
 		local msgstr = cat and cat[msgid]
-		if msgstr then
-			return msgstr[0]
+		if msgstr and msgstr~="" then
+			local msg = msgstr[0]
+			return msg~="" and msg or nil
 		end
 	end
 end
@@ -86,12 +87,11 @@ end
 local function catngettext(catalogs, msgid, msgid_plural, n)
 	n = math.floor(n)
 	for i, cat in ipairs(catalogs) do
-		print(i, dump(cat))
 		local msgstr = cat and cat[msgid]
 		if msgstr then
 			local index = cat.plural_index(n)
-			print("catngettext:", index, msgstr[index])
-			return msgstr[index]
+			local msg = msgstr[index]
+			return msg~="" and msg or nil
 		end
 	end
 	return n==1 and msgid or msgid_plural
