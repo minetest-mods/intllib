@@ -25,7 +25,7 @@ local function unescape(str)
 		local bsl = #bs
 		local realbs = strrep("\\", bsl/2)
 		if bsl%2 == 1 then
-			c = escapes[c]
+			c = escapes[c] or c
 		end
 		return realbs..c
 	end))
