@@ -5,7 +5,7 @@ In order to enable it for your mod, copy some boilerplate into your
 source file(s). What you need depends on what you want to support.
 
 There are now two main interfaces: one using the old plain text file method,
-and one using the new support for [gettext][gettext] message catalogs (`.mo`).
+and one using the new support for [gettext][gettext] message catalogs (`.po`).
 Read below for details on each one.
 
 You will also need to optionally depend on intllib, to do so add `intllib?`
@@ -23,13 +23,8 @@ your mod, then include this boilerplate code in files needing localization:
     local MP = minetest.get_modpath(minetest.get_current_modname())
     local S, NS = dofile(MP.."/intllib.lua")
 
-Use the usual gettext tools (`xgettext`, `msgfmt`, etc.), to generate your
-catalog files in a directory named `locale`.
-
-Note: Drop the `.mo` file directly as `locale/$lang.mo`. **Not** in
-`locale/$lang/LC_MESSAGES/$domain.mo`!
-
-You should also provide the source `.po` and `.pot` files.
+Use the usual `xgettext` command line tool from [gettext][gettext], to
+generate your catalog files in a directory named `locale`.
 
 ### Basic workflow
 
@@ -52,11 +47,6 @@ for most cases. You may specify other options if desired:
 NOTE: There's also a Windows batch file `xgettext.bat` for Windows users,
 but you will need to install the gettext command line tools separately. See
 the top of the file for configuration.
-
-Once a translator submits an updated translation, you should run the `msgfmt`
-tool:
-
-    msgfmt locale/ll_CC.po -o locale/ll_CC.mo
 
 ## Old interface
 
