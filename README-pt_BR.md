@@ -30,7 +30,7 @@ o primeiro encontrado:
   * `language` definido em `minetest.conf`.
   * Variável de ambiente `LANGUAGE`.
   * Variável de ambiente `LANG`.
-  * Se todos falharem, usa `en` (inglês).
+  * Se todos falharem, usa `en` (inglês).
 
 Em todo caso, o resultado final deve ser um 
 [Código de Idioma ISO 639-1][ISO639-1] do idioma desejado.
