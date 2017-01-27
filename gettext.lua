@@ -252,8 +252,8 @@ local function load_catalog(filename)
 
 	local pf = hdrs["Plural-Forms"]
 	if not pf then
-		return bail("failed to load catalog:"
-				.." catalog has no Plural-Forms header")
+		-- XXX: Is this right? Gettext assumes this if header not present.
+		pf = "nplurals=2; plural=n != 1"
 	end
 
 	data.plural_index, err = compile_plural_forms(pf)
