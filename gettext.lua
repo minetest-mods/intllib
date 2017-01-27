@@ -136,7 +136,7 @@ local function detect_languages()
 
 	local v
 
-	v = rawget(_G, "minetest") and minetest.setting_get("language")
+	v = minetest.setting_get("language")
 	if v and v~="" then
 		addlang(v)
 	end
@@ -157,11 +157,7 @@ local function detect_languages()
 end
 
 local function warn(msg)
-	if rawget(_G, "minetest") then
-		minetest.log("warning", msg)
-	else
-		io.stderr:write("WARNING: ", msg, "\n")
-	end
+	minetest.log("warning", "[intllib] "..msg)
 end
 
 -- hax!
@@ -224,7 +220,7 @@ local function load_catalog(filename)
 	local f, data, err
 
 	local function bail(msg)
-		warn(msg..(err and ": ")..(err or ""))
+		warn(msg..(err and ": " or "")..(err or ""))
 		return nil
 	end
 
