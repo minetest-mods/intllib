@@ -86,7 +86,7 @@ end
 
 local function catngettext(catalogs, msgid, msgid_plural, n)
 	n = math.floor(n)
-	for i, cat in ipairs(catalogs) do
+	for _, cat in ipairs(catalogs) do
 		local msgstr = cat and cat[msgid]
 		if msgstr then
 			local index = cat.plural_index(n)
@@ -107,18 +107,18 @@ function intllib.make_gettext_pair(modname)
 	local localedir = minetest.get_modpath(modname).."/locale"
 	local catalogs = gettext.load_catalogs(localedir)
 	local getter = Getter(modname)
-	local function gettext(msgid, ...)
+	local function gettext_func(msgid, ...)
 		local msgstr = (catgettext(catalogs, msgid)
 				or getter(msgid))
 		return do_replacements(msgstr, ...)
 	end
-	local function ngettext(msgid, msgid_plural, n, ...)
+	local function ngettext_func(msgid, msgid_plural, n, ...)
 		local msgstr = (catngettext(catalogs, msgid, msgid_plural, n)
 				or getter(msgid))
 		return do_replacements(msgstr, ...)
 	end
-	gettext_getters[modname] = { gettext, ngettext }
-	return gettext, ngettext
+	gettext_getters[modname] = { gettext_func, ngettext_func }
+	return gettext_func, ngettext_func
 end
 
 

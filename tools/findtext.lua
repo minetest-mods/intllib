@@ -123,7 +123,7 @@ table.sort(messages)
 
 local last_msg
 
-for i, msg in ipairs(messages) do
+for _, msg in ipairs(messages) do
 	if msg ~= last_msg then
 		printf("%s =\n", escape(msg))
 	end

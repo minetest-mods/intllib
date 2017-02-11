@@ -49,7 +49,7 @@ end
 function intllib.load_strings(filename)
 	local file, err = io.open(filename, "r")
 	if not file then
-		return nil
+		return nil, err
 	end
 	local strings = {}
 	for line in file:lines() do

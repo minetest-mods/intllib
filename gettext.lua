@@ -1,7 +1,6 @@
 
 local strfind, strsub, strrep = string.find, string.sub, string.rep
 local strmatch, strgsub = string.match, string.gsub
-local floor = math.floor
 
 local function split(str, sep)
 	local pos, endp = 1, #str+1
@@ -103,6 +102,7 @@ local function parse_po(str)
 
 		return perror("malformed line")
 
+	-- luacheck: ignore
 	until true end -- end for
 
 	return texts
@@ -110,9 +110,6 @@ end
 
 local M = { }
 
-local domains = { }
-local dgettext_cache = { }
-local dngettext_cache = { }
 local langs
 
 local function detect_languages()
@@ -166,8 +163,8 @@ end
 -- Note that it assumes the C expression is valid to begin with.
 local function compile_plural_forms(str)
 	local plural = strmatch(str, "plural=([^;]+);?$")
-	local function replace_ternary(str)
-		local c, t, f = strmatch(str, "^(.-)%?(.-):(.*)")
+	local function replace_ternary(s)
+		local c, t, f = strmatch(s, "^(.-)%?(.-):(.*)")
 		if c then
 			return ("__if("
 					..replace_ternary(c)
@@ -175,7 +172,7 @@ local function compile_plural_forms(str)
 					..","..replace_ternary(f)
 					..")")
 		end
-		return str
+		return s
 	end
 	plural = replace_ternary(plural)
 	plural = strgsub(plural, "&&", " and ")

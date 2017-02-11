@@ -7,7 +7,7 @@ end
 if basedir == "" then basedir = "./" end
 
 -- Required by load_strings()
-function string.trim(s)
+function string.trim(s) -- luacheck: ignore
 	return s:gsub("^%s*(.-)%s*$", "%1")
 end
 
@@ -20,7 +20,7 @@ local function err(fmt, ...)
 	os.exit(1)
 end
 
-local template
+local output, outfile, template
 local catalogs = { }
 
 local function usage()
@@ -54,10 +54,7 @@ while i <= #arg do
 		if i > #arg then
 			err("missing required argument to `%s'", a)
 		end
-	elseif (a == "-c") or (a == "--comment") then
-		old_msg_mode = "c"
-	elseif (a == "-d") or (a == "--delete") then
-		old_msg_mode = "d"
+		output = arg[i]
 	elseif a:sub(1, 1) ~= "-" then
 		if not template then
 			template = a
@@ -81,25 +78,16 @@ if not f then
 	err("error opening template: %s", e)
 end
 
-local function printf(fmt, ...)
-	outfile:write(fmt:format(...))
-end
-
 local escapes = { ["\n"] = "\\n", ["="] = "\\=", ["\\"] = "\\\\", }
 local function escape(s)
 	return s:gsub("[\\\n=]", escapes)
 end
 
 if output then
-	local e
 	outfile, e = io.open(output, "w")
 	if not outfile then
 		err("error opening file for writing: %s", e)
 	end
-end
-
-local function printf(fmt, ...)
-	io.stdout:write(fmt:format(...))
 end
 
 local template_msgs = intllib.load_strings(template)
@@ -120,10 +108,12 @@ for _, file in ipairs(catalogs) do
 		for k, v in pairs(catalog_msgs) do
 			if not template_msgs[k] then
 				print("OLD: "..k)
+				table.insert(dirty_lines, "OLD: "..escape(k).." = "..escape(v))
 			end
 		end
 		if #dirty_lines > 0 then
-			local outf, e = io.open(file, "a+")
+			local outf
+			outf, e = io.open(file, "a+")
 			if outf then
 				outf:write("\n")
 				for _, line in ipairs(dirty_lines) do
