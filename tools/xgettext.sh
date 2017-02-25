@@ -9,15 +9,19 @@ fi
 
 mkdir -p locale;
 echo "Generating template..." >&2;
-xgettext --from-code=UTF-8 -kS -kNS:1,2 -k_ \
-		-o locale/template.pot "$@" \
+xgettext --from-code=UTF-8 \
+		--keyword=S \
+		--keyword=NS:1,2 \
+		--keyword=N_ \
+		--add-comments='Translators:' \
+		--add-location=file \
+		-o locale/template.pot \
+		"$@" \
 		|| exit;
 
-cd locale;
-
-for file in *.po; do
+find locale -name '*.po' -type f | while read -r file; do
 	echo "Updating $file..." >&2;
-	msgmerge --update "$file" template.pot;
+	msgmerge --update "$file" locale/template.pot;
 done
 
 echo "DONE!" >&2;
