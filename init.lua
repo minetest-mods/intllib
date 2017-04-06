@@ -17,6 +17,8 @@ local LANG = minetest.setting_get("language")
 if not (LANG and (LANG ~= "")) then LANG = os.getenv("LANG") end
 if not (LANG and (LANG ~= "")) then LANG = "en" end
 
+if PLATFORM ~= "Windows" and LANG == "ja" then LANG = "ja_utf8" end
+
 
 local INS_CHAR = intllib.INSERTION_CHAR
 local insertion_pattern = "("..INS_CHAR.."?)"..INS_CHAR.."(%(?)(%d+)(%)?)"
