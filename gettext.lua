@@ -1,17 +1,6 @@
 
-local strfind, strsub, strrep = string.find, string.sub, string.rep
+local strsub, strrep = string.sub, string.rep
 local strmatch, strgsub = string.match, string.gsub
-
-local function split(str, sep)
-	local pos, endp = 1, #str+1
-	return function()
-		if (not pos) or pos > endp then return end
-		local s, e = strfind(str, sep, pos, true)
-		local part = strsub(str, pos, s and s-1)
-		pos = e and e + 1
-		return part
-	end
-end
 
 local function trim(str)
 	return strmatch(str, "^%s*(.-)%s*$")
@@ -37,7 +26,7 @@ local function parse_po(str)
 	local function perror(msg)
 		return error(msg.." at line "..lineno)
 	end
-	for line in split(str, "\n") do repeat
+	for _, line in ipairs(str:split("\n")) do repeat
 		lineno = lineno + 1
 		line = trim(line)
 
@@ -110,49 +99,6 @@ end
 
 local M = { }
 
-local langs
-
-local function detect_languages()
-	if langs then return langs end
-
-	langs = { }
-
-	local function addlang(l)
-		local sep
-		langs[#langs+1] = l
-		sep = strfind(l, ".", 1, true)
-		if sep then
-			l = strsub(l, 1, sep-1)
-			langs[#langs+1] = l
-		end
-		sep = strfind(l, "_", 1, true)
-		if sep then
-			langs[#langs+1] = strsub(l, 1, sep-1)
-		end
-	end
-
-	local v
-
-	v = minetest.setting_get("language")
-	if v and v~="" then
-		addlang(v)
-	end
-
-	v = os.getenv("LANGUAGE")
-	if v then
-		for item in split(v, ":") do
-			addlang(item)
-		end
-	end
-
-	v = os.getenv("LANG")
-	if v then
-		addlang(v)
-	end
-
-	return langs
-end
-
 local function warn(msg)
 	minetest.log("warning", "[intllib] "..msg)
 end
@@ -204,7 +150,7 @@ end
 
 local function parse_headers(str)
 	local headers = { }
-	for line in split(str, "\n") do
+	for _, line in ipairs(str:split("\n")) do
 		local k, v = strmatch(line, "^([^:]+):%s*(.*)")
 		if k then
 			headers[k] = v
@@ -264,7 +210,7 @@ local function load_catalog(filename)
 end
 
 function M.load_catalogs(path)
-	detect_languages()
+	local langs = intllib.get_detected_languages()
 
 	local cats = { }
 	for _, lang in ipairs(langs) do

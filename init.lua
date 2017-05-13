@@ -71,6 +71,62 @@ function intllib.Getter(modname)
 end
 
 
+local strfind, strsub = string.find, string.sub
+local langs
+
+local function split(str, sep)
+	local pos, endp = 1, #str+1
+	return function()
+		if (not pos) or pos > endp then return end
+		local s, e = strfind(str, sep, pos, true)
+		local part = strsub(str, pos, s and s-1)
+		pos = e and e + 1
+		return part
+	end
+end
+
+function intllib.get_detected_languages()
+	if langs then return langs end
+
+	langs = { }
+
+	local function addlang(l)
+		local sep
+		langs[#langs+1] = l
+		sep = strfind(l, ".", 1, true)
+		if sep then
+			l = strsub(l, 1, sep-1)
+			langs[#langs+1] = l
+		end
+		sep = strfind(l, "_", 1, true)
+		if sep then
+			langs[#langs+1] = strsub(l, 1, sep-1)
+		end
+	end
+
+	local v
+
+	v = minetest.setting_get("language")
+	if v and v~="" then
+		addlang(v)
+	end
+
+	v = os.getenv("LANGUAGE")
+	if v then
+		for item in split(v, ":") do
+			addlang(item)
+		end
+	end
+
+	v = os.getenv("LANG")
+	if v then
+		addlang(v)
+	end
+
+	return langs
+end
+
+
 local gettext = dofile(minetest.get_modpath("intllib").."/gettext.lua")
 
 
