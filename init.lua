@@ -114,7 +114,7 @@ function intllib.get_detected_languages()
 	v = os.getenv("LANGUAGE")
 	if v then
 		for item in split(v, ":") do
-			addlang(item)
+			langs[#langs+1] = item
 		end
 	end
 
