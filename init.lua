@@ -123,6 +123,8 @@ function intllib.get_detected_languages()
 		addlang(v)
 	end
 
+	langs[#langs+1] = "en"
+
 	return langs
 end
 
