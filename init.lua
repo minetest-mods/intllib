@@ -65,8 +65,11 @@ end
 
 
 function intllib.Getter(modname)
+	local info = debug and debug.getinfo and debug.getinfo(2)
+	local loc = info and info.short_src..":"..info.currentline
 	minetest.log("deprecated", "intllib.Getter is deprecated."
-			.."Please use intllib.make_gettext_pair instead.")
+			.." Please use intllib.make_gettext_pair instead."
+			..(info and " (called from "..loc..")" or "")
 	return Getter(modname)
 end
 
