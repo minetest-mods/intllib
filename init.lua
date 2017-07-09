@@ -69,7 +69,7 @@ function intllib.Getter(modname)
 	local loc = info and info.short_src..":"..info.currentline
 	minetest.log("deprecated", "intllib.Getter is deprecated."
 			.." Please use intllib.make_gettext_pair instead."
-			..(info and " (called from "..loc..")" or "")
+			..(info and " (called from "..loc..")" or ""))
 	return Getter(modname)
 end
 
