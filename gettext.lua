@@ -209,9 +209,19 @@ local function load_catalog(filename)
 	return data
 end
 
-function M.load_catalogs(path)
-	local langs = intllib.get_detected_languages()
-
+function M.load_catalogs(path, first_lang)
+	
+	-- add selected first lang
+	if first_lang then
+		langs = {}
+		table.insert(langs, first_lang)
+		for _, lang in ipairs(intllib.get_detected_languages()) do
+			langs[#langs+1] = lang
+		end
+	else
+		langs = intllib.get_detected_languages()
+	end
+	
 	local cats = { }
 	for _, lang in ipairs(langs) do
 		local cat = load_catalog(path.."/"..lang..".po")
