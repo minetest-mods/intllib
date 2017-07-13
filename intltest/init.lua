@@ -1,7 +1,7 @@
 
 -- Load support for intllib.
 local MP = minetest.get_modpath(minetest.get_current_modname())
-local S, NS = dofile(MP.."/intllib.lua")
+local S, NS, SS = dofile(MP.."/intllib.lua")
 
 local use_count = 0
 
@@ -26,3 +26,8 @@ minetest.register_craftitem("intltest:test", {
 		minetest.chat_send_player(user:get_player_name(), message)
 	end,
 })
+
+minetest.log("action", "(nil)"..SS(nil, "Test: @1 @2", SS(nil, "Blue"), SS(nil, "Car")))
+minetest.log("action", "(es) "..SS("es", "Test: @1 @2", SS("es", "Blue"), SS("es", "Car")))
+minetest.log("action", "(pt) "..SS("pt", "Test: @1 @2", SS("pt", "Blue"), SS("pt", "Car")))
+minetest.log("action", "(de) "..SS("de", "Test: @1 @2", SS("de", "Blue"), SS("de", "Car")))

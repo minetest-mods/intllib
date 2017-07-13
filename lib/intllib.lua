@@ -21,11 +21,11 @@ local function format(str, ...)
 	return (str:gsub("(@?)@(%(?)(%d+)(%)?)", repl))
 end
 
-local gettext, ngettext
+local gettext, ngettext, sgettext
 if minetest.get_modpath("intllib") then
 	if intllib.make_gettext_pair then
 		-- New method using gettext.
-		gettext, ngettext = intllib.make_gettext_pair()
+		gettext, ngettext, sgettext = intllib.make_gettext_pair()
 	else
 		-- Old method using text files.
 		gettext = intllib.Getter()
@@ -42,4 +42,6 @@ ngettext = ngettext or function(msgid, msgid_plural, n, ...)
 	return format(n==1 and msgid or msgid_plural, ...)
 end
 
-return gettext, ngettext
+sgettext = sgettext or gettext 
+
+return gettext, ngettext, sgettext
