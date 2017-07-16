@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-25 20:40-0300\n"
+"POT-Creation-Date: 2017-07-16 11:41-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -40,5 +40,15 @@ msgstr ""
 #: init.lua
 msgid "Item has been used @1 time."
 msgid_plural "Item has been used @1 times."
+msgstr[0] ""
+msgstr[1] ""
+
+#: init.lua
+msgid "Green"
+msgstr ""
+
+#: init.lua
+msgid "Hello, @1 world!"
+msgid_plural "Hello, @1 worlds!"
 msgstr[0] ""
 msgstr[1] ""
