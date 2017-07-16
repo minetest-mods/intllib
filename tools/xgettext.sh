@@ -11,7 +11,9 @@ mkdir -p locale;
 echo "Generating template..." >&2;
 xgettext --from-code=UTF-8 \
 		--keyword=S \
+		--keyword=SS:2 \
 		--keyword=NS:1,2 \
+		--keyword=SNS:2,3 \
 		--keyword=N_ \
 		--add-comments='Translators:' \
 		--add-location=file \
