@@ -27,7 +27,7 @@ minetest.register_craftitem("intltest:test", {
 	end,
 })
 
-minetest.log("action", "(nil)"..SS(nil, "Test: @1 @2", SS(nil, "Blue"), SS(nil, "Car")))
-minetest.log("action", "(es) "..SS("es", "Test: @1 @2", SS("es", "Blue"), SS("es", "Car")))
-minetest.log("action", "(pt) "..SS("pt", "Test: @1 @2", SS("pt", "Blue"), SS("pt", "Car")))
-minetest.log("action", "(de) "..SS("de", "Test: @1 @2", SS("de", "Blue"), SS("de", "Car")))
+minetest.log("action", "(nil)"..SS(nil, "Test: @1 @2", SS(nil, "Green"), SS(nil, "Car")))
+minetest.log("action", "(es) "..SS("es", "Test: @1 @2", SS("es", "Green"), SS("es", "Car")))
+minetest.log("action", "(pt) "..SS("pt", "Test: @1 @2", SS("pt", "Green"), SS("pt", "Car")))
+minetest.log("action", "(de) "..SS("de", "Test: @1 @2", SS("de", "Green"), SS("de", "Car")))

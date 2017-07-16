@@ -2,13 +2,14 @@
 # Copyright (C) 2013-2017 Diego Martínez <kaeza@users.sf.net>
 # This file is distributed under the same license as the intllib mod.
 # Diego Martínez <kaeza@users.sf.net>, 2013-2017.
+# Diego Martnez <kaeza@users.sf.net>, 2017.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: I18N Test Mod 0.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-02-25 20:40-0300\n"
-"PO-Revision-Date: 2017-01-23 17:36-0300\n"
+"POT-Creation-Date: 2017-07-15 22:37-0300\n"
+"PO-Revision-Date: 2017-07-15 22:38-0300\n"
 "Last-Translator: Diego Martnez <kaeza@users.sf.net>\n"
 "Language-Team: Spanish\n"
 "Language: es\n"
@@ -16,6 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Gtranslator 2.91.7\n"
 
 #: init.lua
 msgid "Hello, world!"
@@ -41,3 +43,7 @@ msgid "Item has been used @1 time."
 msgid_plural "Item has been used @1 times."
 msgstr[0] "El objeto ha sido usado @1 vez."
 msgstr[1] "El objeto ha sido usado @1 veces."
+
+#: init.lua
+msgid "Green"
+msgstr "Verde"

@@ -19,6 +19,7 @@ md locale > nul 2>&1
 echo Generating template... 1>&2
 echo %xgettext% --from-code=UTF-8 -kS -kNS:1,2 -k_ -o locale/template.pot %*
 %xgettext% --from-code=UTF-8 -kS -kNS:1,2 -k_ -o locale/template.pot %*
+%xgettext% --from-code=UTF-8 -kS -kSS:2 -k_ -o locale/template.pot %*
 if %ERRORLEVEL% neq 0 goto done
 
 cd locale
