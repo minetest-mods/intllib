@@ -36,7 +36,7 @@ string to be translated has singular and plural forms. For example:
     -- The second `count` is the actual replacement.
     print(NS("You have one item.", "You have @1 items.", count, count))
 
-The `SS` and `SNS` are equivalent to `S` and `SNS` respectively, 
+The `SS` and `SNS` are equivalent to `S` and `NS` respectively, 
 but the first argument is the selected language code. If not find it, 
 works the same as `S` or `NS` normally.
 
