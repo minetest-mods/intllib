@@ -4,19 +4,19 @@
 Oleh Diego Martínez (kaeza).
 Diterbitkan bawah Unlicense. Lihat `LICENSE.md` untuk maklumat lanjut.
 
-Mods ini ialah usaha untuk menyediakan sokongan pengantarabangsaan
-untuk mods (sesuatu yang Minetest tiada ketika ini).
+Mods ini ialah suatu usaha untuk menyediakan sokongan pengantarabangsaan
+kepada mods (sesuatu yang Minetest tiada ketika ini).
 
-Jika anda ada komen/cadangan, sila tulis di dalam [topik forum][topik].
-Untuk melaporkan pepijat, gunakan [penjejak pepijat][pepijat] Github.
+Jika anda mempunyai sebarang komen/cadangan, sila tulis ke dalam [topik forum][topik].
+Untuk melaporkan pepijat, sila gunakan [penjejak pepijat][pepijat] Github.
 
-## Bagaimana cara gunanya
+## Bagaimanakah cara untuk menggunakannya?
 
 Jika anda pemain biasa yang mencari teks terjemahan, hanya [pasangkan][pasang_mods]
 mods ini seperti mods lain, kemudian bolehkannya melalui GUI.
 
-Mods ini cuba untuk mengesan bahasa anda, tetapi kerana tiada
-cara mudah alih untuk melakukannya, ia cuba beberapa cara lain:
+Mods ini cuba untuk mengesan bahasa anda, tetapi oleh kerana tiada
+cara mudah alih untuk melakukannya, ia cuba beberapa cara yang lain:
 
 * Tetapan `language` di dalam fail `minetest.conf`.
 * Pembolehubah sekitaran `LANGUAGE`.
@@ -37,5 +37,5 @@ Jika anda seorang penterjemah, sila lihat `doc/translator.md`.
 
 [topik]: https://forum.minetest.net/viewtopic.php?id=4929
 [pepijat]: https://github.com/minetest-mods/intllib/issues
-[pasang_mods]: https://wiki.minetest.net/Installing_mods/ms
+[pasang_mods]: https://wiki.minetest.net/Installing_Mods/ms
 [ISO639-1]: https://ms.wikipedia.org/wiki/Senarai_kod_ISO_639-1
