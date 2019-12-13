@@ -1,6 +1,8 @@
 
 # Internationalization Lib for Minetest
 
+***This mod is deprecated. Please use the translation API of Minetest 5.x***
+
 By Diego Martínez (kaeza).
 Released under Unlicense. See `LICENSE.md` for details.
 
