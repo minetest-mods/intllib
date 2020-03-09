@@ -1,7 +1,7 @@
 
 # Internationalization Lib for Minetest
 
-## DEPRECATED
+## DEPRECATED - Use Minetest's new translation API instead!
 
 You should not use this mod when writing new mods, and you should update mods to no longer depend on this mod.
 
