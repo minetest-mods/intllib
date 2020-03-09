@@ -1,6 +1,14 @@
 
 # Internationalization Lib for Minetest
 
+## DEPRECATED
+
+You should not use this mod when writing new mods, and you should update mods to no longer depend on this mod.
+
+Minetest 5.0 has builtin support for client-side translation, accessed by `minetest.get_translator()`
+
+## Aboud
+
 By Diego Martínez (kaeza).
 Released under Unlicense. See `LICENSE.md` for details.
 
