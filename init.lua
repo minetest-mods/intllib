@@ -201,7 +201,8 @@ function intllib.get_strings(modname, langcode)
 		local modpath = minetest.get_modpath(modname)
 		msgstr = { }
 		for _, l in ipairs(get_locales(langcode)) do
-			local t = intllib.load_strings(modpath.."/locale/"..l..".txt") or { }
+			local t = intllib.load_strings(modpath.."/locale/"..modname.."."..l..".tr")
+				or intllib.load_strings(modpath.."/locale/"..l..".txt") or { }
 			for k, v in pairs(t) do
 				msgstr[k] = msgstr[k] or v
 			end
