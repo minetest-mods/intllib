@@ -21,7 +21,7 @@ msgstr ""
 
 #: init.lua
 msgid "Hello, world!"
-msgstr "¡Hola, mundo!"
+msgstr "Ola, mundo!"
 
 #. Translators: @1 is color, @2 is object.
 #: init.lua
@@ -35,14 +35,14 @@ msgstr "Carro"
 #. Translators: @1 is color, @2 is object.
 #: init.lua
 msgid "Test: @1 @2"
-msgstr "Prueba: @2 @1"
+msgstr "Teste: @2 @1"
 
 #. Translators: @1 is use count.
 #: init.lua
 msgid "Item has been used @1 time."
 msgid_plural "Item has been used @1 times."
-msgstr[0] "El objeto ha sido usado @1 vez."
-msgstr[1] "El objeto ha sido usado @1 veces."
+msgstr[0] "Esse objeto foi usado @1 vez."
+msgstr[1] "Esse objeto foi usado @2 vezes."
 
 #: init.lua
 msgid "Green"
@@ -51,5 +51,5 @@ msgstr "Verde"
 #: init.lua
 msgid "Hello, @1 world!"
 msgid_plural "Hello, @1 worlds!"
-msgstr[0] "¡Hola, mundo!"
-msgstr[1] "¡Hola, @1 mundos!"
+msgstr[0] "Ola, mundo!"
+msgstr[1] "Ola, @1 mundos!"

@@ -178,8 +178,21 @@ function intllib.make_gettext_pair(modname)
 				or getter(msgid))
 		return do_replacements(msgstr, ...)
 	end
-	gettext_getters[modname] = { gettext_func, ngettext_func }
-	return gettext_func, ngettext_func
+	-- Get string of Selected language
+	local function sgettext_func(lang, msgid, ...)
+		local scatalogs = gettext.load_catalogs(localedir, lang)
+		local msgstr = (catgettext(scatalogs, msgid)
+				or getter(msgid))
+		return do_replacements(msgstr, ...)
+	end
+	local function sngettext_func(lang, msgid, msgid_plural, n, ...)
+		local scatalogs = gettext.load_catalogs(localedir, lang)
+		local msgstr = (catngettext(scatalogs, msgid, msgid_plural, n)
+				or getter(msgid))
+		return do_replacements(msgstr, ...)
+	end
+	gettext_getters[modname] = { gettext_func, ngettext_func, sgettext_func, sngettext_func }
+	return gettext_func, ngettext_func, sgettext_func, sngettext_func
 end
 
 
